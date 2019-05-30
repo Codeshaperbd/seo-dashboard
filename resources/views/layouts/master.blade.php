@@ -18,25 +18,28 @@
 
 		<link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,600,700|Josefin+Sans:400,600,700|Muli:400,400i,600,700|Ubuntu" rel="stylesheet"> --}}
 
+
 		<link href="https://fonts.googleapis.com/css?family=Kanit:200,300,400,500,600,700,800,900|Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
 
 		{{-- Vendor CSS --}}
-		<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.css') }}" />
+		
 		<link rel="stylesheet" href="{{ asset('assets/vendor/animate/animate.css') }}">
 
 		<link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/fontawesome-all.min.css') }}" />
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
 		<link rel="stylesheet" href="{{ asset('assets/vendor/magnific-popup/magnific-popup.css') }}" />
 		{{-- <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css') }}" /> --}}
 
 		{{-- Specific Page Vendor CSS --}}
 		@yield('page-style')
-
+		<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.css') }}" />
 		{{-- Theme CSS --}}
 		<link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}" />
-
+		
 		{{-- Skin CSS --}}
 		<link rel="stylesheet" href="{{ asset('assets/css/skins/default.css') }}" />
-
+		
 		{{-- Theme Custom CSS --}}
 		<link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 
@@ -112,6 +115,8 @@
 
 		{{-- Vendor --}}
 		<script src="{{ asset('assets/vendor/jquery/jquery.js') }}"></script>
+
+		<script src="{{ asset('js/app.js') }}"></script>
 		<script src="{{ asset('assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js') }}"></script>
 		<script src="{{ asset('assets/vendor/popper/umd/popper.min.js') }}"></script>
 		<script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.js') }}"></script>

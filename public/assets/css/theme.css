@@ -5354,7 +5354,8 @@ ul.nav-main > li.nav-expanded > a {
 }
 
 ul.nav-main li {
-	width: 100%;
+    width: 100%;
+    border-bottom: 1px solid #e8e8e840;
 }
 
 ul.nav-main li a {
