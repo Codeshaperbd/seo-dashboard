@@ -517,6 +517,7 @@ html.sidebar-light:not(.dark) ul.nav-main li a {
     border: 1px solid rgba(0, 0, 0, 0);
 }
 
+.card-body-2 .form-group.is-active,
 .card-body-2 .form-group:hover{
   background: #F8F9FA;
   border: 1px solid rgba(0,0,0,.05);
@@ -555,6 +556,8 @@ html.sidebar-light:not(.dark) ul.nav-main li a {
     background: #fff;
 }
 
+.card-body-2 .form-group.is-active:before,
+.card-body-2 .form-group.is-active .remove-input,
 .card-body-2 .form-group:hover .remove-input,
 .card-body-2 .form-group:hover:before {
     opacity: 1;
@@ -576,8 +579,7 @@ form label{
     background-color: #fff;
     background-clip: border-box;
     border: 0 solid rgba(0,0,0,.05);
-    border-radius: .25rem;
-}
+    border-radius: .25rem;    margin-bottom: 5px;}
 
 .custom-radio .custom-control-input:checked ~ .custom-control-label::before {
     background-color: #2ec3a1;
@@ -589,4 +591,29 @@ form label{
 }
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
     background-color: #2ec3a1;
+}
+
+
+.slick-preview {
+    width: 100%;
+}
+
+.slick-preview td, .slick-preview th {
+    border: 1px solid #ccc;
+}
+
+.slick-preview th {
+    text-align: center;
+    background: #eee;
+    font-weight: 400;
+}
+
+.service-add button{
+    width: 40px;
+    height: 37px;
+    margin-left: 15px;
+}
+
+.itemRemove button{
+    margin-left: 15px;
 }
