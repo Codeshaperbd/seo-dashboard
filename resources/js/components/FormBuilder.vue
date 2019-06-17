@@ -45,12 +45,12 @@
                                         <button type="button" data-delete="" class="btn btn-sm remove-input" @click.prevent="clearField(data.field, index)"><i class="fas fa-trash"></i></button>
                                         <label for="clientName">{{ data.label }} <small v-if="data.isRequired == false">(optional)</small></label>
                                         <div class="form-row w-100" @click="editElementProperties(data)">
-                                            <div class="col-md-6" v-for="(item, roll) in data.hasOptions" :key="item.optionValue" :label="roll">
+                                            <div class="col-md-6" v-for="(item, roll) in data.hasServices" :key="item.optionValue" :label="roll">
                                                 <div class="scard p-2">
                                                     <div class="custom-control custom-radio">
                                                         <input type="radio" name="option0" id="action-0-0" class="custom-control-input" checked="checked"> 
-                                                        <label for="action-0-0" class="custom-control-label">{{ item.serviceName }}</label> 
-                                                        <p>{{ item.servicePrice }}</p>
+                                                        <label for="action-0-0" class="custom-control-label">{{ item[item[0].selectedService].serviceName }}</label> 
+                                                        <p>{{ item[item[0].selectedService].servicePrice }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -64,13 +64,13 @@
                                         <button type="button" data-delete="" class="btn btn-sm remove-input" @click.prevent="clearField(data.field, index)"><i class="fas fa-trash"></i></button>
                                         <label for="clientName">{{ data.label }} <small v-show="data.isRequired == false">(optional)</small></label>
                                         <div class="form-row w-100" @click="editElementProperties(data)">
-                                            <div class="col-md-6" v-for="(item, roll) in data.hasOptions" :key="item.optionValue" :label="roll">
+                                            <div class="col-md-6" v-for="(item, roll) in data.hasServices" :key="item.optionValue" :label="roll">
                                                 <div class="scard p-2">
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" name="option1" :id="index" class="custom-control-input" checked="checked">
                                                         
-                                                       <label :for="index" class="custom-control-label">{{ item.serviceName }}</label>
-                                                        <p>{{ item.servicePrice }}</p>
+                                                       <label :for="index" class="custom-control-label">{{ item[item[0].selectedService].serviceName }} </label>
+                                                        <p>{{ item[item[0].selectedService].servicePrice }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -79,18 +79,20 @@
                                     <!-- Checkbox group (multiple services) end -->
 
                                     <!-- Dropdown menu (single service) start -->
-                                    <div class="form-group" v-if="data.field === 'dropDownSingleService'" @click="formCustomize = dropDownSingleService" :class="{ 'is-active': data === activeForm  }">
+                                    <div class="form-group" v-if="data.field === 'dropDownSingleService'" :class="{ 'is-active': data === activeForm  }">
                                         <button type="button" data-delete="" class="btn btn-sm remove-input" @click.prevent="clearField(data.field, index)"><i class="fas fa-trash"></i></button>
-                                        <label for="clientName">Dropdown menu (single service)</label>
-                                        <div class="dropdown">
-                                            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle w-100 text-left" aria-expanded="false">Choose a service
-                                                <span class="bs-caret float-right">
-                                                    <span class="caret"></span>
-                                                </span>
-                                            </button> 
-                                            <div class="dropdown-menu w-100" x-placement="bottom-start" style="">
-                                                <a href="#" class="dropdown-item" draggable="false">Choose a service</a> 
-                                                <a href="#" click.prevent="1" class="dropdown-item" draggable="false">Service one</a>
+                                        <div @click="editElementProperties(data)">
+                                            <label for="clientName">{{ data.label }} <small v-show="data.isRequired == false">(optional)</small></label>
+                                            <div class="dropdown">
+                                                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle w-100 text-left" aria-expanded="false">{{ data.defaultSelected }}
+                                                    <span class="bs-caret float-right">
+                                                        <span class="caret"></span>
+                                                    </span>
+                                                </button> 
+                                                <div class="dropdown-menu w-100" x-placement="bottom-start" style="">
+                                                    <a href="#" class="dropdown-item" draggable="false">{{ data.defaultSelected }}</a> 
+                                                    <a href="#" click.prevent="1" class="dropdown-item" draggable="false" v-for="(item, roll) in data.hasServices">{{ item[item[0].selectedService].serviceName }}</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -98,18 +100,20 @@
 
 
                                     <!-- Dropdown menu (multiple services) start -->
-                                    <div class="form-group" v-if="data.field === 'dropDownMultipleServices'" @click="formCustomize = dropDownMultipleServices" :class="{ 'is-active': data === activeForm  }">
+                                    <div class="form-group" v-if="data.field === 'dropDownMultipleServices'" :class="{ 'is-active': data === activeForm  }">
                                         <button type="button" data-delete="" class="btn btn-sm remove-input" @click.prevent="clearField(data.field, index)"><i class="fas fa-trash"></i></button>
-                                        <label for="clientName">Dropdown menu (Multiple service)</label>
-                                        <div class="dropdown">
-                                            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle w-100 text-left" aria-expanded="false">Choose a service
-                                                <span class="bs-caret float-right">
-                                                    <span class="caret"></span>
-                                                </span>
-                                            </button> 
-                                            <div class="dropdown-menu w-100" x-placement="bottom-start" style="">
-                                                <a href="#" class="dropdown-item" draggable="false">Choose a service</a> 
-                                                <a href="#" click.prevent="1" class="dropdown-item" draggable="false">Service one</a>
+                                       <div @click="editElementProperties(data)">
+                                            <label for="clientName">{{ data.label }} <small v-show="data.isRequired == false">(optional)</small></label>
+                                            <div class="dropdown">
+                                                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle w-100 text-left" aria-expanded="false">{{ data.defaultSelected }}
+                                                    <span class="bs-caret float-right">
+                                                        <span class="caret"></span>
+                                                    </span>
+                                                </button> 
+                                                <div class="dropdown-menu w-100" x-placement="bottom-start" style="">
+                                                    <a href="#" class="dropdown-item" draggable="false">{{ data.defaultSelected }}</a> 
+                                                    <a href="#" click.prevent="1" class="dropdown-item" draggable="false" v-for="(item, roll) in data.hasServices">{{ item[item[0].selectedService].serviceName }}</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -237,7 +241,7 @@
                                         <button type="button" data-delete="" class="btn btn-sm remove-input" @click.prevent="clearField(field, index)"><i class="fas fa-trash"></i></button>
                                         <div class="custom-control custom-checkbox" @click="editElementProperties(data)">
                                             <input type="checkbox" id="action-2" class="custom-control-input"> 
-                                            <label for="action-2" class="custom-control-label">{{ data.label }}</label> 
+                                            <label for="action-2" class="custom-control-label">{{ data.label }} <small v-show="data.isRequired == false">(optional)</small></label> 
                                             <p>{{ data.helpBlock }}</p>
                                         </div>
                                     </div>
@@ -249,13 +253,13 @@
                                         <div @click="editElementProperties(data)">
                                             <label for="clientName">{{ data.label }} <small v-show="data.isRequired == false">(optional)</small></label>
                                             <div class="dropdown">
-                                                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle w-100 text-left" aria-expanded="false">{{ data.hasOptions[0].option }}
+                                                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle w-100 text-left" aria-expanded="false">{{ data.hasItem[0].option }}
                                                     <span class="bs-caret float-right">
                                                         <span class="caret"></span>
                                                     </span>
                                                 </button> 
                                                 <div class="dropdown-menu w-100" x-placement="bottom-start" style="">
-                                                    <a href="#" class="dropdown-item" draggable="false" v-for="(item, roll) in data.hasOptions" :key="item.optionValue" :label="roll">{{ item.option }}</a> 
+                                                    <a href="#" class="dropdown-item" draggable="false" v-for="(item, roll) in data.hasItem" :key="item.optionValue" :label="roll">{{ item.option }}</a> 
                                                    
                                                 </div>
                                             </div>
@@ -281,23 +285,22 @@
                                     <!-- file upload end -->
 
                                     <!-- spread Sheet start -->
-                                    <div class="form-group" v-if="data.field === 'spreadSheetInput'">
-                                        <button type="button" data-delete="" class="btn btn-sm remove-input" @click.prevent="clearField(field, index)"><i class="fas fa-trash"></i></button>
-                                        <label>Spreadsheet input</label>
-                                        <table class="slick-preview">
-                                            <tr>
-                                                <th>&nbsp;</th> 
-                                                <th>Link</th>
-                                                <th>Anchor text</th>
-                                                <th>Test</th>
-                                            </tr> 
-                                            <tr>
-                                                <th>1</th> 
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        </table>
+                                    <div class="form-group" v-if="data.field === 'spreadSheetInput'" :class="{ 'is-active': data === activeForm  }">
+                                        <button type="button" data-delete="" class="btn btn-sm remove-input" @click.prevent="clearField(data.field, index)"><i class="fas fa-trash"></i></button>
+                                        <div  @click="editElementProperties(data)">
+                                            <label>{{ data.label }}</label>
+                                            <table class="slick-preview">
+                                                <tr>
+                                                    <th>&nbsp;</th> 
+                                                    <th v-for="(item, roll) in data.hasItem">{{ item.option  }}</th>
+                                                </tr> 
+                                                <tr>
+                                                    <th>1</th> 
+                                                    <td v-for="(item, roll) in data.hasItem"></td>
+                                                </tr> 
+                                               
+                                            </table>
+                                        </div>
                                     </div>
                                     <!-- spread Sheet start -->
 
@@ -326,80 +329,115 @@
                         <div class="sticky-top">
                             <div  v-show="elementInput === true">
                                <div class="list-group mb-3 available-fields">
+
+                                    <!-- 1. check box single service -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="ckBoxSingleService" >
                                         <i class="fas fa-dot-circle"></i> 
                                         <span class="ml-2">Option group (single service)</span>
                                     </button>
+
+                                    <!-- 2. check box multiple service -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="ckBoxMultipleService">
                                         <i class="fas fa-check"></i>
                                         <span class="ml-2">Checkbox group (multiple services)</span>
                                     </button>
+                                    <!-- 3. dropdown single service -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="dropDownSingle">
                                         <i class="fas fa-sort"></i> 
                                         <span class="ml-2">Dropdown menu (single service)</span>
                                     </button>
+
+                                    <!-- 4. dropdown multiple service -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="dropDownMultiple">
                                         <i class="fas fa-sort"></i> 
                                         <span class="ml-2">Dropdown menu (multiple services)</span>
                                     </button>
                                 </div>
                                 <div class="list-group mb-3 available-fields">
+
+                                    <!-- 5. full name -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="fullName" >
                                         <i class="fas fa-user"></i> 
                                         <span class="ml-2">Full name</span>
                                     </button>
+
+                                    <!-- 6. email -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="email">
                                         <i class="fas fa-envelope-open"></i> 
                                         <span class="ml-2">Email</span>
                                     </button>
+
+                                    <!-- 7. password -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="password">
                                         <i class="fas fa-unlock-alt"></i> 
                                         <span class="ml-2">Password</span>
                                     </button>
+
+                                    <!-- 8. billing address -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="billingAddress">
                                         <i class="fas fa-address-card"></i> 
                                         <span class="ml-2">Billing address</span>
                                     </button>
+
+                                    <!-- 9. email option -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="email_option">
                                         <i class="fas fa-envelope-open"></i> <span class="ml-2">Email Opt-in</span>
                                     </button>
                                 </div>
                                 <div class="list-group mb-3 available-fields">
+
+                                    <!-- 10. payment method -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="paymentMethod">
                                         <i class="fas fa-credit-card"></i> <span class="ml-2">Payment Method</span>
                                     </button>
                                 </div>
                                 <div class="list-group mb-3 available-fields">
+
+                                    <!-- 11. single text -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="singleText(true)">
                                         <i class="fas fa-i-cursor"></i> 
                                         <span class="ml-2">Single line of text</span>
                                     </button>
+                                    
+                                    <!-- 12. multi text -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="multiText">
                                         <i class="fas fa-align-left"></i> 
                                         <span class="ml-2">Multiple lines of text</span>
                                     </button>
+
+                                    <!-- 13. checkbox -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="checkbox">
                                         <i class="fas fa-check-square"></i> 
                                         <span class="ml-2">Checkbox</span>
                                     </button>
+
+                                    <!-- 14. dropdown -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="dropdown">
                                         <i class="fas fa-sort"></i> 
                                         <span class="ml-2">Dropdown menu</span>
                                     </button>
+
+                                    <!-- 15. file upload -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="fileUpload">
                                         <i class="fas fa-upload"></i>
                                         <span class="ml-2">File upload</span>
                                     </button>
+
+                                    <!-- 16. spread sheet -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="spreadSheetInput">
                                         <i class="fas fa-table"></i> 
                                         <span class="ml-2">Spreadsheet input</span>
                                     </button>
                                 </div>
                                 <div class="list-group mb-3 available-fields">
+
+                                    <!-- 17. section break -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="sectionBreak">
                                         <i class="fas fa-minus"></i> 
                                         <span class="ml-2">Section break</span>
                                     </button>
+
+                                    <!-- 18. page break -->
                                     <button type="button" class="list-group-item list-group-item-action" @click="pageBreak">
                                         <i class="fas fa-clone"></i> 
                                         <span class="ml-2">Page break</span>
@@ -414,64 +452,99 @@
                                       <code>{{  activeForm.field }} </code> <a class="close float-right" @click="fieldCardClose">×</a>
                                    </div>
                                    <div class="card-body">
+
+                                      <!-- field name -->
                                       <div class="form-group">
                                         <label>Field name</label> 
                                         <input type="text" v-model="activeForm.label" :placeholder="activeForm.label" class="form-control">
                                       </div>
-                                      <!----> <!----> <!---->
+
+                                      <!-- default name -->
+                                      <div class="form-group" v-show="activeForm.hasOwnProperty('defaultSelected')">
+                                        <label>Default</label> 
+                                        <input type="text" v-model="activeForm.defaultSelected" :placeholder="activeForm.defaultSelected" class="form-control">
+                                      </div>
+
+                                      <!-- placeholder text -->
                                       <div class="form-group" v-show="activeForm.hasOwnProperty('placeholder')">
                                          <label>Placeholder text</label> 
                                          <input type="text" v-model="activeForm.placeholder" class="form-control"> 
                                          <p class="help-block">Shown inside the field</p>
                                       </div>
-                                      <!----> <!----> <!----> <!---->
-                                      <div class="form-group" v-if="activeForm.hasOwnProperty('hasOptions') & activeForm.field != 'dropdown'">
+
+                                      <!-- services text -->
+                                      <div class="form-group" v-if="activeForm.hasOwnProperty('hasServices')">
                                         <label>Services</label>
                                         <div class="d-flex align-items-start justify-content-center service-add" v-if="activeForm['hasOwnProperty'].length">
-                                            <select class="form-control">
-                                                    <option disabled="true" selected>Please select a services</option>
-                                                    <option v-for="(service, activeIndex) in activeForm.hasOptions" :key="activeIndex">{{ service.serviceName }}</option>
-                                            </select>
-                                            <button type="button" class="btn btn-sm remove" style=""><i class="fas fa-trash" @click="deleteOption(activeForm.hasOptions, activeIndex)"></i></button>
+                                            <div class="form-group w-100" >
+                                                <div class="d-flex itemRemove" v-for="(serviceProject, serviceIndex) in activeForm.hasServices">
+                                                    <select class="form-control" v-model="serviceProject[0].selectedService">
+                                                            <option disabled selected="selected">Please select a services {{ serviceIndex }}</option>
+                                                            <option v-for="(service, sindex) in serviceProject.slice(1, 3)" :key="sindex" :value="sindex+1">
+                                                                <p>{{ service.serviceName }}</p>
+                                                                <p> (${{ service.servicePrice }})</p>
+                                                            </option>
+                                                    </select>
+                                                    <button type="button" class="btn btn-sm remove" v-show="activeForm.hasServices.length > 1">
+                                                        <i class="fas fa-trash" @click="deleteOption(activeForm.hasServices, serviceIndex)"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="service-none" v-else>
                                             All services
                                         </div>
-                                        <button type="button" class="btn btn-link p-0" @click="addOption(activeForm.hasOptions)">+ Add service</button>
+                                        <button type="button" class="btn btn-link p-0" @click="addService(activeForm.hasServices, activeForm.hasServices[0])">+ Add service</button>
                                       </div> 
 
-
-                                      <div class="form-group" v-if="activeForm.hasOwnProperty('hasOptions') & activeForm.field == 'dropdown'">
-                                        <label>Items</label>
+                                      <!-- Item for spreed sheet -->
+                                      <div class="form-group" v-if="activeForm.hasOwnProperty('hasItem')">
+                                        <label v-if="activeForm.field === 'spreadSheetInput'">Columns</label>
+                                        <label v-else>Items</label>
                                         <div class="form-group">
-                                            <div class="d-flex itemRemove" v-for="(item, activeIndex) in activeForm.hasOptions" :key="activeIndex" style="margin-bottom:10px">
+                                            <div class="d-flex itemRemove" v-for="(item, activeIndex) in activeForm.hasItem" :key="activeIndex" style="margin-bottom:10px">
                                                 <input type="text" v-model="item.option" class="form-control" >
-                                                <button type="button" class="btn btn-sm remove" @click="deleteOption(activeForm.hasOptions,activeIndex)" v-show="activeForm.hasOptions.length > 1">
+                                                <button type="button" class="btn btn-sm remove" @click="deleteOption(activeForm.hasItem,activeIndex)" v-show="activeForm.hasItem.length > 1">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-link p-0" @click="addOption(activeForm.hasOptions)">+ Add item</button>
+                                        <button type="button" class="btn btn-link p-0" @click="addOption(activeForm.hasItem)">
+                                            <span v-if="activeForm.field === 'spreadSheetInput'">+ Add column</span>
+                                            <span v-else>+ Add item</span>
+                                        </button>
                                       </div>
-                                      <!----> <!----> <!----> <!----> 
+
+                                      <!-- Help text -->
                                       <div class="form-group" v-show="activeForm.hasOwnProperty('helpBlock')">
                                          <label>Help Text</label> 
                                          <textarea placeholder="Enter your full URL and anchor text" class="form-control" style="resize: none; overflow: hidden; height: 55px;" spellcheck="false" v-model="activeForm.helpBlock" ></textarea>
                                          <p class="help-block">Shown next to the field, supports HTML</p>
                                       </div>
-                                      <!----> <!----> <!----> <!---->
+
+                                      <!-- allow multiple files -->
                                       <div class="form-group" v-show="activeForm.hasOwnProperty('allowMultiple')">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" id="required" value="true" class="custom-control-input" v-model="activeForm.allowMultiple"> 
                                             <label for="required" class="custom-control-label">Allow multiple files</label>
                                         </div>
                                       </div>
+
+                                      <!-- Has Quantaty -->
+                                      <div class="form-group" v-show="activeForm.hasOwnProperty('hasQuantaty')">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" id="required12" value="true" class="custom-control-input" v-model="activeForm.hasQuantaty"> 
+                                            <label for="required12" class="custom-control-label">Show quantity input</label>
+                                        </div>
+                                      </div>
+                                      <!-- Is Required -->
                                       <div class="form-group" v-show="activeForm.hasOwnProperty('isRequired')">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" id="required1" value="true" class="custom-control-input" v-model="activeForm.isRequired"> 
                                             <label for="required1" class="custom-control-label">This is a required field</label>
                                         </div>
                                       </div>
+
                                       <!----> <!----> <!----> <!----> 
                                       <div class="text-right"><button type="button" class="btn btn-secondary" @click="fieldCardClose">Close</button></div>
                                    </div>
@@ -505,49 +578,79 @@
             sort() {
               this.form = this.form.sort((a, b) => a.order - b.order);
             },
+
+            // 1. check box single service
             ckBoxSingleService () {
                 this.form.push({
                     field: 'opt_single_service',
                     order:1,
                     label: 'Option group (single service)',
-                    hasOptions: [
-                        { serviceName: "Service 1", servicePrice: 100 },
-                        { serviceName: "Service 2", servicePrice: 500 }
+                    hasQuantaty:false,
+                    hasServices: [
+                        [
+                            { selectedService: 1 },
+                            { serviceName: "Service 1", servicePrice: 100 },
+                            { serviceName: "Service 2", servicePrice: 500 },
+                        ]
                     ],
                 });
-
-            
             },
-
-
-     
+            // 2. check box multiple service
             ckBoxMultipleService () {
                 this.form.push({
                     field: 'ckboxMultiServices',
                     order:2,
                     label: 'Checkbox group (multiple services)',
+                    hasQuantaty:false,
                     isRequired:false,
-                    hasOptions: [
-                        { serviceName: "Service 1", servicePrice: 100 },
-                        { serviceName: "Service 2", servicePrice: 500 }
+                    hasServices: [
+                        [
+                            { selectedService: 1 },
+                            { serviceName: "Service 1", servicePrice: 100 },
+                            { serviceName: "Service 2", servicePrice: 500 }
+                        ]
                     ],
                 })
             },
+            // 3. dropdown single service
             dropDownSingle () {
                 this.form.push({
                     field: 'dropDownSingleService',
-                     order:3,
+                    order:3,
+                    label: 'Dropdown menu (single service)',
+                    defaultSelected:"Choose a service",
+                    hasQuantaty:false,
+                    isRequired:false,
+                    hasServices: [
+                        [
+                            { selectedService: 1 },
+                            { serviceName: "Service 1", servicePrice: 100 },
+                            { serviceName: "Service 2", servicePrice: 500 }
+                        ]
+                    ],
               
                 })
             },
+            // 4. dropdown multiple service
             dropDownMultiple () {
                 this.form.push({
                     field: 'dropDownMultipleServices',
-                     order:4,
+                    order:4,
+                    label: 'Dropdown menu (multiple services)',
+                    defaultSelected:"Choose a service",
+                    hasQuantaty:false,
+                    isRequired:false,
+                    hasServices: [
+                        [
+                            { selectedService: 1 },
+                            { serviceName: "Service 1", servicePrice: 100 },
+                            { serviceName: "Service 2", servicePrice: 500 }
+                        ]
+                    ],
           
                 })
             },
-            //2nd box
+            // 5. full name
             fullName() {
                 this.form.push({
                     field: 'fullName',
@@ -555,6 +658,7 @@
                     label: 'Full Name',
                 })
             },
+            // 6. email
             email() {
                 this.form.push({
                     field: 'email',
@@ -563,6 +667,7 @@
                     placeholder: '',
                 })
             },
+            // 7. password
             password() {
                 this.form.push({
                     field: 'password',
@@ -571,6 +676,7 @@
                     placeholder: '',
                 })
             },
+            // 8. billing address
             billingAddress() {
                 this.form.push({
                     field: 'billingAddress',
@@ -578,6 +684,7 @@
                     label: 'Billing Address',
                 })
             },
+            // 9. email option
             email_option() {
                 this.form.push({
                     field: 'email_option',
@@ -587,6 +694,7 @@
 
                 })
             },
+            // 10. payment method
             paymentMethod() {
                 this.form.push({
                     field: 'paymentMethod',
@@ -594,7 +702,7 @@
                     label: 'Payment Method',
                 })
             },
-            //last part
+            // 11. single text
             singleText() {
                 this.form.push({
                     field: 'singleText',
@@ -606,6 +714,7 @@
 
                 })
             },
+            // 12. multi text
             multiText() {
                 this.form.push({
                     field: 'multiText',
@@ -616,6 +725,7 @@
                     placeholder:'',
                 })
             },
+            // 13. checkbox
             checkbox() {
                 this.form.push({
                     field: 'checkbox',
@@ -625,6 +735,8 @@
                     isRequired:false,
                 })
             },
+
+            // 14. dropdown
             dropdown() {
                 this.form.push({
                     field: 'dropdown',
@@ -632,12 +744,13 @@
                     label:'Dropdown menu',
                     helpBlock:'',
                     isRequired:false,
-                    hasOptions: [
-                        { option: "Option 1"},
-                        { option: "Option 2"}
+                    hasItem: [
+                        { option: "Item 1"},
+                        { option: "Item 2"}
                     ],
                 })
             },
+            // 15. file upload
             fileUpload() {
                 this.form.push({
                     field: 'fileUpload',
@@ -649,18 +762,34 @@
                     allowMultiple:false,
                 })
             },
+            // 16. spread sheet
             spreadSheetInput() {
                 this.form.push({
                     field: 'spreadSheetInput',
                     order:16,
+                    label:'Spreadsheet input',
+                    isRequired:false,
+                    // services: [
+                    //     {service:"service 1"},
+                    //     {service:"service 1"},
+                    //     {service:"service 1"}
+                    // ],
+                    hasItem: [
+                        { option: "Option 1"},
+                        { option: "Option 2"}
+                    ],
                 })
             },
+            // 17. section break
             sectionBreak(){
                 this.form.push({
                     field:'sectionBreak',
                     order:17,
+                    label:'Section Break',
+                    helpBlock:'Decribe the page below or leve empty'
                 })
             },
+            // 18. page break
             pageBreak(){
                 this.form.push({
                     field:'pageBreak',
@@ -690,16 +819,31 @@
 
             //add and delete new array inside an exixting object
             deleteOption(option, index){
+                //console.log(index);
                 this.$delete(option, index)
             },
+            // deleteService(hasServices, index){
+            //     console.log(index);
+            //     this.$delete(hasServices, index)
+            // },
+            // add new item/option
             addOption(option){
                 let count = option.length + 1;
-
                 option.push({
-                    serviceName: "Option " + count,
-                    servicePrice: "1" + count
+                    option: "Item " + count,
                 })
-            }
+            },
+
+            // add new item/option
+            addService: function(option,service) {
+                option.push(
+                    [
+                        { selectedService: 1 },
+                        { serviceName: "Service 1", servicePrice: 100 },
+                        { serviceName: "Service 2", servicePrice: 500 },
+                    ]
+                );
+            },
       
         },
         computed: {
@@ -712,5 +856,5 @@
               };
             }
         }
-    }
+    };
 </script>

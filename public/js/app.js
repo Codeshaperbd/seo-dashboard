@@ -2291,6 +2291,79 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2306,48 +2379,84 @@ __webpack_require__.r(__webpack_exports__);
         return a.order - b.order;
       });
     },
+    // 1. check box single service
     ckBoxSingleService: function ckBoxSingleService() {
       this.form.push({
         field: 'opt_single_service',
         order: 1,
         label: 'Option group (single service)',
-        hasOptions: [{
+        hasQuantaty: false,
+        hasServices: [[{
+          selectedService: 1
+        }, {
           serviceName: "Service 1",
           servicePrice: 100
         }, {
           serviceName: "Service 2",
           servicePrice: 500
-        }]
+        }]]
       });
     },
+    // 2. check box multiple service
     ckBoxMultipleService: function ckBoxMultipleService() {
       this.form.push({
         field: 'ckboxMultiServices',
         order: 2,
         label: 'Checkbox group (multiple services)',
+        hasQuantaty: false,
         isRequired: false,
-        hasOptions: [{
+        hasServices: [[{
+          selectedService: 1
+        }, {
           serviceName: "Service 1",
           servicePrice: 100
         }, {
           serviceName: "Service 2",
           servicePrice: 500
-        }]
+        }]]
       });
     },
+    // 3. dropdown single service
     dropDownSingle: function dropDownSingle() {
       this.form.push({
         field: 'dropDownSingleService',
-        order: 3
+        order: 3,
+        label: 'Dropdown menu (single service)',
+        defaultSelected: "Choose a service",
+        hasQuantaty: false,
+        isRequired: false,
+        hasServices: [[{
+          selectedService: 1
+        }, {
+          serviceName: "Service 1",
+          servicePrice: 100
+        }, {
+          serviceName: "Service 2",
+          servicePrice: 500
+        }]]
       });
     },
+    // 4. dropdown multiple service
     dropDownMultiple: function dropDownMultiple() {
       this.form.push({
         field: 'dropDownMultipleServices',
-        order: 4
+        order: 4,
+        label: 'Dropdown menu (multiple services)',
+        defaultSelected: "Choose a service",
+        hasQuantaty: false,
+        isRequired: false,
+        hasServices: [[{
+          selectedService: 1
+        }, {
+          serviceName: "Service 1",
+          servicePrice: 100
+        }, {
+          serviceName: "Service 2",
+          servicePrice: 500
+        }]]
       });
     },
-    //2nd box
+    // 5. full name
     fullName: function fullName() {
       this.form.push({
         field: 'fullName',
@@ -2355,6 +2464,7 @@ __webpack_require__.r(__webpack_exports__);
         label: 'Full Name'
       });
     },
+    // 6. email
     email: function email() {
       this.form.push({
         field: 'email',
@@ -2363,6 +2473,7 @@ __webpack_require__.r(__webpack_exports__);
         placeholder: ''
       });
     },
+    // 7. password
     password: function password() {
       this.form.push({
         field: 'password',
@@ -2371,6 +2482,7 @@ __webpack_require__.r(__webpack_exports__);
         placeholder: ''
       });
     },
+    // 8. billing address
     billingAddress: function billingAddress() {
       this.form.push({
         field: 'billingAddress',
@@ -2378,6 +2490,7 @@ __webpack_require__.r(__webpack_exports__);
         label: 'Billing Address'
       });
     },
+    // 9. email option
     email_option: function email_option() {
       this.form.push({
         field: 'email_option',
@@ -2386,6 +2499,7 @@ __webpack_require__.r(__webpack_exports__);
         helpBlock: 'Check this box if you\'d like to receive occasional emails from us'
       });
     },
+    // 10. payment method
     paymentMethod: function paymentMethod() {
       this.form.push({
         field: 'paymentMethod',
@@ -2393,7 +2507,7 @@ __webpack_require__.r(__webpack_exports__);
         label: 'Payment Method'
       });
     },
-    //last part
+    // 11. single text
     singleText: function singleText() {
       this.form.push({
         field: 'singleText',
@@ -2404,6 +2518,7 @@ __webpack_require__.r(__webpack_exports__);
         placeholder: ''
       });
     },
+    // 12. multi text
     multiText: function multiText() {
       this.form.push({
         field: 'multiText',
@@ -2414,6 +2529,7 @@ __webpack_require__.r(__webpack_exports__);
         placeholder: ''
       });
     },
+    // 13. checkbox
     checkbox: function checkbox() {
       this.form.push({
         field: 'checkbox',
@@ -2423,6 +2539,7 @@ __webpack_require__.r(__webpack_exports__);
         isRequired: false
       });
     },
+    // 14. dropdown
     dropdown: function dropdown() {
       this.form.push({
         field: 'dropdown',
@@ -2430,13 +2547,14 @@ __webpack_require__.r(__webpack_exports__);
         label: 'Dropdown menu',
         helpBlock: '',
         isRequired: false,
-        hasOptions: [{
-          option: "Option 1"
+        hasItem: [{
+          option: "Item 1"
         }, {
-          option: "Option 2"
+          option: "Item 2"
         }]
       });
     },
+    // 15. file upload
     fileUpload: function fileUpload() {
       this.form.push({
         field: 'fileUpload',
@@ -2448,18 +2566,35 @@ __webpack_require__.r(__webpack_exports__);
         allowMultiple: false
       });
     },
+    // 16. spread sheet
     spreadSheetInput: function spreadSheetInput() {
       this.form.push({
         field: 'spreadSheetInput',
-        order: 16
+        order: 16,
+        label: 'Spreadsheet input',
+        isRequired: false,
+        // services: [
+        //     {service:"service 1"},
+        //     {service:"service 1"},
+        //     {service:"service 1"}
+        // ],
+        hasItem: [{
+          option: "Option 1"
+        }, {
+          option: "Option 2"
+        }]
       });
     },
+    // 17. section break
     sectionBreak: function sectionBreak() {
       this.form.push({
         field: 'sectionBreak',
-        order: 17
+        order: 17,
+        label: 'Section Break',
+        helpBlock: 'Decribe the page below or leve empty'
       });
     },
+    // 18. page break
     pageBreak: function pageBreak() {
       this.form.push({
         field: 'pageBreak',
@@ -2486,14 +2621,31 @@ __webpack_require__.r(__webpack_exports__);
     },
     //add and delete new array inside an exixting object
     deleteOption: function deleteOption(option, index) {
+      //console.log(index);
       this.$delete(option, index);
     },
+    // deleteService(hasServices, index){
+    //     console.log(index);
+    //     this.$delete(hasServices, index)
+    // },
+    // add new item/option
     addOption: function addOption(option) {
       var count = option.length + 1;
       option.push({
-        serviceName: "Option " + count,
-        servicePrice: "1" + count
+        option: "Item " + count
       });
+    },
+    // add new item/option
+    addService: function addService(option, service) {
+      option.push([{
+        selectedService: 1
+      }, {
+        serviceName: "Service 1",
+        servicePrice: 100
+      }, {
+        serviceName: "Service 2",
+        servicePrice: 500
+      }]);
     }
   },
   computed: {
@@ -40414,7 +40566,7 @@ var render = function() {
                                     }
                                   }
                                 },
-                                _vm._l(data.hasOptions, function(item, roll) {
+                                _vm._l(data.hasServices, function(item, roll) {
                                   return _c(
                                     "div",
                                     {
@@ -40449,11 +40601,24 @@ var render = function() {
                                                   "custom-control-label",
                                                 attrs: { for: "action-0-0" }
                                               },
-                                              [_vm._v(_vm._s(item.serviceName))]
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    item[
+                                                      item[0].selectedService
+                                                    ].serviceName
+                                                  )
+                                                )
+                                              ]
                                             ),
                                             _vm._v(" "),
                                             _c("p", [
-                                              _vm._v(_vm._s(item.servicePrice))
+                                              _vm._v(
+                                                _vm._s(
+                                                  item[item[0].selectedService]
+                                                    .servicePrice
+                                                )
+                                              )
                                             ])
                                           ]
                                         )
@@ -40518,7 +40683,7 @@ var render = function() {
                                     }
                                   }
                                 },
-                                _vm._l(data.hasOptions, function(item, roll) {
+                                _vm._l(data.hasServices, function(item, roll) {
                                   return _c(
                                     "div",
                                     {
@@ -40553,11 +40718,24 @@ var render = function() {
                                                   "custom-control-label",
                                                 attrs: { for: index }
                                               },
-                                              [_vm._v(_vm._s(item.serviceName))]
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    item[
+                                                      item[0].selectedService
+                                                    ].serviceName
+                                                  ) + " "
+                                                )
+                                              ]
                                             ),
                                             _vm._v(" "),
                                             _c("p", [
-                                              _vm._v(_vm._s(item.servicePrice))
+                                              _vm._v(
+                                                _vm._s(
+                                                  item[item[0].selectedService]
+                                                    .servicePrice
+                                                )
+                                              )
                                             ])
                                           ]
                                         )
@@ -40576,12 +40754,7 @@ var render = function() {
                             "div",
                             {
                               staticClass: "form-group",
-                              class: { "is-active": data === _vm.activeForm },
-                              on: {
-                                click: function($event) {
-                                  _vm.formCustomize = _vm.dropDownSingleService
-                                }
-                              }
+                              class: { "is-active": data === _vm.activeForm }
                             },
                             [
                               _c(
@@ -40599,65 +40772,115 @@ var render = function() {
                                 [_c("i", { staticClass: "fas fa-trash" })]
                               ),
                               _vm._v(" "),
-                              _c("label", { attrs: { for: "clientName" } }, [
-                                _vm._v("Dropdown menu (single service)")
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "dropdown" }, [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-default dropdown-toggle w-100 text-left",
-                                    attrs: {
-                                      type: "button",
-                                      "data-toggle": "dropdown",
-                                      "aria-expanded": "false"
+                              _c(
+                                "div",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.editElementProperties(data)
                                     }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "Choose a service\n                                            "
-                                    ),
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    { attrs: { for: "clientName" } },
+                                    [
+                                      _vm._v(_vm._s(data.label) + " "),
+                                      _c(
+                                        "small",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "show",
+                                              rawName: "v-show",
+                                              value: data.isRequired == false,
+                                              expression:
+                                                "data.isRequired == false"
+                                            }
+                                          ]
+                                        },
+                                        [_vm._v("(optional)")]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "dropdown" }, [
                                     _c(
-                                      "span",
-                                      { staticClass: "bs-caret float-right" },
-                                      [_c("span", { staticClass: "caret" })]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "dropdown-menu w-100",
-                                    attrs: { "x-placement": "bottom-start" }
-                                  },
-                                  [
-                                    _c(
-                                      "a",
+                                      "button",
                                       {
-                                        staticClass: "dropdown-item",
-                                        attrs: { href: "#", draggable: "false" }
+                                        staticClass:
+                                          "btn btn-default dropdown-toggle w-100 text-left",
+                                        attrs: {
+                                          type: "button",
+                                          "data-toggle": "dropdown",
+                                          "aria-expanded": "false"
+                                        }
                                       },
-                                      [_vm._v("Choose a service")]
+                                      [
+                                        _vm._v(
+                                          _vm._s(data.defaultSelected) +
+                                            "\n                                                "
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass: "bs-caret float-right"
+                                          },
+                                          [_c("span", { staticClass: "caret" })]
+                                        )
+                                      ]
                                     ),
                                     _vm._v(" "),
                                     _c(
-                                      "a",
+                                      "div",
                                       {
-                                        staticClass: "dropdown-item",
-                                        attrs: {
-                                          href: "#",
-                                          "click.prevent": "1",
-                                          draggable: "false"
-                                        }
+                                        staticClass: "dropdown-menu w-100",
+                                        attrs: { "x-placement": "bottom-start" }
                                       },
-                                      [_vm._v("Service one")]
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "dropdown-item",
+                                            attrs: {
+                                              href: "#",
+                                              draggable: "false"
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(data.defaultSelected))]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm._l(data.hasServices, function(
+                                          item,
+                                          roll
+                                        ) {
+                                          return _c(
+                                            "a",
+                                            {
+                                              staticClass: "dropdown-item",
+                                              attrs: {
+                                                href: "#",
+                                                "click.prevent": "1",
+                                                draggable: "false"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  item[item[0].selectedService]
+                                                    .serviceName
+                                                )
+                                              )
+                                            ]
+                                          )
+                                        })
+                                      ],
+                                      2
                                     )
-                                  ]
-                                )
-                              ])
+                                  ])
+                                ]
+                              )
                             ]
                           )
                         : _vm._e(),
@@ -40667,13 +40890,7 @@ var render = function() {
                             "div",
                             {
                               staticClass: "form-group",
-                              class: { "is-active": data === _vm.activeForm },
-                              on: {
-                                click: function($event) {
-                                  _vm.formCustomize =
-                                    _vm.dropDownMultipleServices
-                                }
-                              }
+                              class: { "is-active": data === _vm.activeForm }
                             },
                             [
                               _c(
@@ -40691,65 +40908,115 @@ var render = function() {
                                 [_c("i", { staticClass: "fas fa-trash" })]
                               ),
                               _vm._v(" "),
-                              _c("label", { attrs: { for: "clientName" } }, [
-                                _vm._v("Dropdown menu (Multiple service)")
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "dropdown" }, [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-default dropdown-toggle w-100 text-left",
-                                    attrs: {
-                                      type: "button",
-                                      "data-toggle": "dropdown",
-                                      "aria-expanded": "false"
+                              _c(
+                                "div",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.editElementProperties(data)
                                     }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "Choose a service\n                                            "
-                                    ),
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    { attrs: { for: "clientName" } },
+                                    [
+                                      _vm._v(_vm._s(data.label) + " "),
+                                      _c(
+                                        "small",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "show",
+                                              rawName: "v-show",
+                                              value: data.isRequired == false,
+                                              expression:
+                                                "data.isRequired == false"
+                                            }
+                                          ]
+                                        },
+                                        [_vm._v("(optional)")]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "dropdown" }, [
                                     _c(
-                                      "span",
-                                      { staticClass: "bs-caret float-right" },
-                                      [_c("span", { staticClass: "caret" })]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "dropdown-menu w-100",
-                                    attrs: { "x-placement": "bottom-start" }
-                                  },
-                                  [
-                                    _c(
-                                      "a",
+                                      "button",
                                       {
-                                        staticClass: "dropdown-item",
-                                        attrs: { href: "#", draggable: "false" }
+                                        staticClass:
+                                          "btn btn-default dropdown-toggle w-100 text-left",
+                                        attrs: {
+                                          type: "button",
+                                          "data-toggle": "dropdown",
+                                          "aria-expanded": "false"
+                                        }
                                       },
-                                      [_vm._v("Choose a service")]
+                                      [
+                                        _vm._v(
+                                          _vm._s(data.defaultSelected) +
+                                            "\n                                                "
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass: "bs-caret float-right"
+                                          },
+                                          [_c("span", { staticClass: "caret" })]
+                                        )
+                                      ]
                                     ),
                                     _vm._v(" "),
                                     _c(
-                                      "a",
+                                      "div",
                                       {
-                                        staticClass: "dropdown-item",
-                                        attrs: {
-                                          href: "#",
-                                          "click.prevent": "1",
-                                          draggable: "false"
-                                        }
+                                        staticClass: "dropdown-menu w-100",
+                                        attrs: { "x-placement": "bottom-start" }
                                       },
-                                      [_vm._v("Service one")]
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "dropdown-item",
+                                            attrs: {
+                                              href: "#",
+                                              draggable: "false"
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(data.defaultSelected))]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm._l(data.hasServices, function(
+                                          item,
+                                          roll
+                                        ) {
+                                          return _c(
+                                            "a",
+                                            {
+                                              staticClass: "dropdown-item",
+                                              attrs: {
+                                                href: "#",
+                                                "click.prevent": "1",
+                                                draggable: "false"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  item[item[0].selectedService]
+                                                    .serviceName
+                                                )
+                                              )
+                                            ]
+                                          )
+                                        })
+                                      ],
+                                      2
                                     )
-                                  ]
-                                )
-                              ])
+                                  ])
+                                ]
+                              )
                             ]
                           )
                         : _vm._e(),
@@ -41402,7 +41669,24 @@ var render = function() {
                                       staticClass: "custom-control-label",
                                       attrs: { for: "action-2" }
                                     },
-                                    [_vm._v(_vm._s(data.label))]
+                                    [
+                                      _vm._v(_vm._s(data.label) + " "),
+                                      _c(
+                                        "small",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "show",
+                                              rawName: "v-show",
+                                              value: data.isRequired == false,
+                                              expression:
+                                                "data.isRequired == false"
+                                            }
+                                          ]
+                                        },
+                                        [_vm._v("(optional)")]
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c("p", [_vm._v(_vm._s(data.helpBlock))])
@@ -41482,7 +41766,7 @@ var render = function() {
                                       },
                                       [
                                         _vm._v(
-                                          _vm._s(data.hasOptions[0].option) +
+                                          _vm._s(data.hasItem[0].option) +
                                             "\n                                                "
                                         ),
                                         _c(
@@ -41501,7 +41785,7 @@ var render = function() {
                                         staticClass: "dropdown-menu w-100",
                                         attrs: { "x-placement": "bottom-start" }
                                       },
-                                      _vm._l(data.hasOptions, function(
+                                      _vm._l(data.hasItem, function(
                                         item,
                                         roll
                                       ) {
@@ -41628,46 +41912,81 @@ var render = function() {
                         : _vm._e(),
                       _vm._v(" "),
                       data.field === "spreadSheetInput"
-                        ? _c("div", { staticClass: "form-group" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-sm remove-input",
-                                attrs: { type: "button", "data-delete": "" },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.clearField(_vm.field, index)
+                        ? _c(
+                            "div",
+                            {
+                              staticClass: "form-group",
+                              class: { "is-active": data === _vm.activeForm }
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-sm remove-input",
+                                  attrs: { type: "button", "data-delete": "" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.clearField(data.field, index)
+                                    }
                                   }
-                                }
-                              },
-                              [_c("i", { staticClass: "fas fa-trash" })]
-                            ),
-                            _vm._v(" "),
-                            _c("label", [_vm._v("Spreadsheet input")]),
-                            _vm._v(" "),
-                            _c("table", { staticClass: "slick-preview" }, [
-                              _c("tr", [
-                                _c("th", [_vm._v(" ")]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Link")]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Anchor text")]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Test")])
-                              ]),
+                                },
+                                [_c("i", { staticClass: "fas fa-trash" })]
+                              ),
                               _vm._v(" "),
-                              _c("tr", [
-                                _c("th", [_vm._v("1")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(" ")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(" ")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(" ")])
-                              ])
-                            ])
-                          ])
+                              _c(
+                                "div",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.editElementProperties(data)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("label", [_vm._v(_vm._s(data.label))]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "table",
+                                    { staticClass: "slick-preview" },
+                                    [
+                                      _c(
+                                        "tr",
+                                        [
+                                          _c("th", [_vm._v(" ")]),
+                                          _vm._v(" "),
+                                          _vm._l(data.hasItem, function(
+                                            item,
+                                            roll
+                                          ) {
+                                            return _c("th", [
+                                              _vm._v(_vm._s(item.option))
+                                            ])
+                                          })
+                                        ],
+                                        2
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "tr",
+                                        [
+                                          _c("th", [_vm._v("1")]),
+                                          _vm._v(" "),
+                                          _vm._l(data.hasItem, function(
+                                            item,
+                                            roll
+                                          ) {
+                                            return _c("td")
+                                          })
+                                        ],
+                                        2
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
                         : _vm._e(),
                       _vm._v(" "),
                       data.field === "sectionBreak"
@@ -42180,6 +42499,56 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.activeForm.hasOwnProperty(
+                                "defaultSelected"
+                              ),
+                              expression:
+                                "activeForm.hasOwnProperty('defaultSelected')"
+                            }
+                          ],
+                          staticClass: "form-group"
+                        },
+                        [
+                          _c("label", [_vm._v("Default")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.activeForm.defaultSelected,
+                                expression: "activeForm.defaultSelected"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              placeholder: _vm.activeForm.defaultSelected
+                            },
+                            domProps: { value: _vm.activeForm.defaultSelected },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.activeForm,
+                                  "defaultSelected",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.activeForm.hasOwnProperty(
                                 "placeholder"
                               ),
                               expression:
@@ -42223,8 +42592,7 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm.activeForm.hasOwnProperty("hasOptions") &
-                      (_vm.activeForm.field != "dropdown")
+                      _vm.activeForm.hasOwnProperty("hasServices")
                         ? _c("div", { staticClass: "form-group" }, [
                             _c("label", [_vm._v("Services")]),
                             _vm._v(" "),
@@ -42237,57 +42605,151 @@ var render = function() {
                                   },
                                   [
                                     _c(
-                                      "select",
-                                      { staticClass: "form-control" },
-                                      [
-                                        _c(
-                                          "option",
-                                          {
-                                            attrs: {
-                                              disabled: "true",
-                                              selected: ""
-                                            }
-                                          },
-                                          [_vm._v("Please select a services")]
-                                        ),
-                                        _vm._v(" "),
-                                        _vm._l(
-                                          _vm.activeForm.hasOptions,
-                                          function(service, activeIndex) {
-                                            return _c(
-                                              "option",
-                                              { key: activeIndex },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(service.serviceName)
-                                                )
-                                              ]
-                                            )
-                                          }
-                                        )
-                                      ],
-                                      2
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-sm remove",
-                                        attrs: { type: "button" }
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "fas fa-trash",
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.deleteOption(
-                                                _vm.activeForm.hasOptions,
-                                                _vm.activeIndex
+                                      "div",
+                                      { staticClass: "form-group w-100" },
+                                      _vm._l(
+                                        _vm.activeForm.hasServices,
+                                        function(serviceProject, serviceIndex) {
+                                          return _c(
+                                            "div",
+                                            {
+                                              staticClass: "d-flex itemRemove"
+                                            },
+                                            [
+                                              _c(
+                                                "select",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        serviceProject[0]
+                                                          .selectedService,
+                                                      expression:
+                                                        "serviceProject[0].selectedService"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-control",
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$selectedVal = Array.prototype.filter
+                                                        .call(
+                                                          $event.target.options,
+                                                          function(o) {
+                                                            return o.selected
+                                                          }
+                                                        )
+                                                        .map(function(o) {
+                                                          var val =
+                                                            "_value" in o
+                                                              ? o._value
+                                                              : o.value
+                                                          return val
+                                                        })
+                                                      _vm.$set(
+                                                        serviceProject[0],
+                                                        "selectedService",
+                                                        $event.target.multiple
+                                                          ? $$selectedVal
+                                                          : $$selectedVal[0]
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "option",
+                                                    {
+                                                      attrs: {
+                                                        disabled: "",
+                                                        selected: "selected"
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Please select a services " +
+                                                          _vm._s(serviceIndex)
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _vm._l(
+                                                    serviceProject.slice(1, 3),
+                                                    function(service, sindex) {
+                                                      return _c(
+                                                        "option",
+                                                        {
+                                                          key: sindex,
+                                                          domProps: {
+                                                            value: sindex + 1
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("p", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                service.serviceName
+                                                              )
+                                                            )
+                                                          ]),
+                                                          _vm._v(" "),
+                                                          _c("p", [
+                                                            _vm._v(
+                                                              " ($" +
+                                                                _vm._s(
+                                                                  service.servicePrice
+                                                                ) +
+                                                                ")"
+                                                            )
+                                                          ])
+                                                        ]
+                                                      )
+                                                    }
+                                                  )
+                                                ],
+                                                2
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "button",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "show",
+                                                      rawName: "v-show",
+                                                      value:
+                                                        _vm.activeForm
+                                                          .hasServices.length >
+                                                        1,
+                                                      expression:
+                                                        "activeForm.hasServices.length > 1"
+                                                    }
+                                                  ],
+                                                  staticClass:
+                                                    "btn btn-sm remove",
+                                                  attrs: { type: "button" }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass: "fas fa-trash",
+                                                    on: {
+                                                      click: function($event) {
+                                                        return _vm.deleteOption(
+                                                          _vm.activeForm
+                                                            .hasServices,
+                                                          serviceIndex
+                                                        )
+                                                      }
+                                                    }
+                                                  })
+                                                ]
                                               )
-                                            }
-                                          }
-                                        })
-                                      ]
+                                            ]
+                                          )
+                                        }
+                                      ),
+                                      0
                                     )
                                   ]
                                 )
@@ -42304,8 +42766,9 @@ var render = function() {
                                 attrs: { type: "button" },
                                 on: {
                                   click: function($event) {
-                                    return _vm.addOption(
-                                      _vm.activeForm.hasOptions
+                                    return _vm.addService(
+                                      _vm.activeForm.hasServices,
+                                      _vm.activeForm.hasServices[0]
                                     )
                                   }
                                 }
@@ -42315,15 +42778,16 @@ var render = function() {
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      _vm.activeForm.hasOwnProperty("hasOptions") &
-                      (_vm.activeForm.field == "dropdown")
+                      _vm.activeForm.hasOwnProperty("hasItem")
                         ? _c("div", { staticClass: "form-group" }, [
-                            _c("label", [_vm._v("Items")]),
+                            _vm.activeForm.field === "spreadSheetInput"
+                              ? _c("label", [_vm._v("Columns")])
+                              : _c("label", [_vm._v("Items")]),
                             _vm._v(" "),
                             _c(
                               "div",
                               { staticClass: "form-group" },
-                              _vm._l(_vm.activeForm.hasOptions, function(
+                              _vm._l(_vm.activeForm.hasItem, function(
                                 item,
                                 activeIndex
                               ) {
@@ -42369,10 +42833,9 @@ var render = function() {
                                             name: "show",
                                             rawName: "v-show",
                                             value:
-                                              _vm.activeForm.hasOptions.length >
-                                              1,
+                                              _vm.activeForm.hasItem.length > 1,
                                             expression:
-                                              "activeForm.hasOptions.length > 1"
+                                              "activeForm.hasItem.length > 1"
                                           }
                                         ],
                                         staticClass: "btn btn-sm remove",
@@ -42380,7 +42843,7 @@ var render = function() {
                                         on: {
                                           click: function($event) {
                                             return _vm.deleteOption(
-                                              _vm.activeForm.hasOptions,
+                                              _vm.activeForm.hasItem,
                                               activeIndex
                                             )
                                           }
@@ -42401,13 +42864,15 @@ var render = function() {
                                 attrs: { type: "button" },
                                 on: {
                                   click: function($event) {
-                                    return _vm.addOption(
-                                      _vm.activeForm.hasOptions
-                                    )
+                                    return _vm.addOption(_vm.activeForm.hasItem)
                                   }
                                 }
                               },
-                              [_vm._v("+ Add item")]
+                              [
+                                _vm.activeForm.field === "spreadSheetInput"
+                                  ? _c("span", [_vm._v("+ Add column")])
+                                  : _c("span", [_vm._v("+ Add item")])
+                              ]
                             )
                           ])
                         : _vm._e(),
@@ -42559,6 +43024,101 @@ var render = function() {
                                   attrs: { for: "required" }
                                 },
                                 [_vm._v("Allow multiple files")]
+                              )
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.activeForm.hasOwnProperty(
+                                "hasQuantaty"
+                              ),
+                              expression:
+                                "activeForm.hasOwnProperty('hasQuantaty')"
+                            }
+                          ],
+                          staticClass: "form-group"
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "custom-control custom-checkbox" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.activeForm.hasQuantaty,
+                                    expression: "activeForm.hasQuantaty"
+                                  }
+                                ],
+                                staticClass: "custom-control-input",
+                                attrs: {
+                                  type: "checkbox",
+                                  id: "required12",
+                                  value: "true"
+                                },
+                                domProps: {
+                                  checked: Array.isArray(
+                                    _vm.activeForm.hasQuantaty
+                                  )
+                                    ? _vm._i(
+                                        _vm.activeForm.hasQuantaty,
+                                        "true"
+                                      ) > -1
+                                    : _vm.activeForm.hasQuantaty
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = _vm.activeForm.hasQuantaty,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = "true",
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            _vm.activeForm,
+                                            "hasQuantaty",
+                                            $$a.concat([$$v])
+                                          )
+                                      } else {
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            _vm.activeForm,
+                                            "hasQuantaty",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
+                                      }
+                                    } else {
+                                      _vm.$set(
+                                        _vm.activeForm,
+                                        "hasQuantaty",
+                                        $$c
+                                      )
+                                    }
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "custom-control-label",
+                                  attrs: { for: "required12" }
+                                },
+                                [_vm._v("Show quantity input")]
                               )
                             ]
                           )
