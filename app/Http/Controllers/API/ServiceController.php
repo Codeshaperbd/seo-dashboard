@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\OrderForm;
+use App\Service;
 
-class FormBuilderController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,6 @@ class FormBuilderController extends Controller
     public function index()
     {
         //
-        $orderForms = OrderForm::select('id','formName','formLink')->where('status',1)->get();
-        return view('order-form.index',compact('orderForms'));
     }
 
     /**
@@ -28,7 +26,9 @@ class FormBuilderController extends Controller
     public function create()
     {
         //
-        return view('order-form.create');
+        $services = Service::all();
+
+        return  response()->json(compact('services'), 200);
     }
 
     /**

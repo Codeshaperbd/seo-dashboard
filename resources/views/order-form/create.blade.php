@@ -42,6 +42,8 @@
 			<section class="mb-4">
 				<div id="app">
 				    <FormBuilder></FormBuilder>
+				    <!-- set progressbar -->
+        			<vue-progress-bar></vue-progress-bar>
 				</div>
 			</section>
 			
