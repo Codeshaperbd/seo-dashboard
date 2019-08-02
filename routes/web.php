@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -45,7 +44,6 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function(){
 	Route::post('invoices', 'ClientDashboardController@getInvoicePage')->name('invoice.client'); 
 
 
-
 });
 
 
@@ -53,6 +51,8 @@ Route::post('/main-account', 'HomeController@backToAccount')->name('account.back
 
 //order message update
 Route::post('/orders/message', 'HomeController@orderMessageUpdate')->name('order.message');
+//custome order
+Route::get('/order/{link}', 'FormBuilderController@order')->name('custom.order')->middleware('web');
 
 
 Route::middleware(['auth', 'verified', 'IsAdmin'])->group(function () {
@@ -225,3 +225,5 @@ Route::middleware(['auth', 'verified', 'IsAdmin'])->group(function () {
 	    return view('profile');
 	})->name('profile');
 });
+
+//Route::get('{path}', 'HomeController@index')->where('path','([A-z\d-\/_.]+)?');

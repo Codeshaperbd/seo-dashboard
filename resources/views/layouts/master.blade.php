@@ -48,7 +48,9 @@
 
 	</head>
 	<body>
-		<section class="body">
+		
+
+		<section class="body" >
 
 			{{-- start: header --}}
 			@include('includes.header')
@@ -108,10 +110,9 @@
 					{{-- end: page content --}}
 				</section>
 			</div>
-
 			
-
 		</section>
+
 
 		{{-- Vendor --}}
 		<script src="{{ asset('assets/vendor/jquery/jquery.js') }}"></script>

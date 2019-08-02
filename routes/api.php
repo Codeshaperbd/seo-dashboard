@@ -19,3 +19,7 @@ use Illuminate\Http\Request;
 
 Route::apiResources(['/order-form' => 'API\OrderFormController']);
 Route::get('/create-form','API\OrderFormController@create');
+Route::post('/create-order','API\OrderFormController@createOrder');
+Route::patch('/order-form-status/{status}','API\OrderFormController@create');
+Route::get('/order-form-status/{id}/{status}','API\OrderFormController@status')->name('order-form-status');
+Route::get('/order-form-duplocate/{id}','API\OrderFormController@duplicate')->name('order-form-duplocate');

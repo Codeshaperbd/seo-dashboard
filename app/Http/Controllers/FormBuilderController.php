@@ -8,6 +8,7 @@ use App\OrderForm;
 
 class FormBuilderController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -62,6 +63,8 @@ class FormBuilderController extends Controller
     public function edit($id)
     {
         //
+        $formData = OrderForm::findOrFail($id);
+        return view('order-form.edit',compact('formData'));
     }
 
     /**
@@ -76,6 +79,18 @@ class FormBuilderController extends Controller
         //
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function order($link)
+    {
+        //
+        $formData = OrderForm::where('formLink',$link)->where('status',1)->first();
+        return view('order-form.order',compact('formData'));
+    }
     /**
      * Remove the specified resource from storage.
      *

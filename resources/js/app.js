@@ -28,23 +28,27 @@ window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+// Vue sweet alert
+import Swal from 'sweetalert2';
+window.Swal = Swal;
+const toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+window.toast = toast;
 
+Vue.component('formindex',require('./components/FormIndex.vue').default);
 Vue.component('formbuilder', require('./components/FormBuilder.vue').default);
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('edit-formbuilder', require('./components/FormBuilderEdit.vue').default);
+Vue.component('custom-order', require('./components/Order.vue').default);
 
-
-/**
- * 
- *All vue template assign in varable
- * 
- */
 // const routes = [
+//   { path: '/formindex', component: require('./components/FormIndex.vue').default },
 //   { path: '/formbuilder', component: require('./components/FormBuilder.vue').default },
-//   //employee path
-
 // ]
+
 
 // const router = new VueRouter({
 // 	mode: "history",
@@ -57,6 +61,11 @@ Vue.component('formbuilder', require('./components/FormBuilder.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// Vue Fire
+window.Fire =  new Vue();
+
+
 const app = new Vue({
     el: '#app',
+    //router
 });

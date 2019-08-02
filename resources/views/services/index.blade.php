@@ -73,7 +73,7 @@
 
 												<a class="dropdown-item text-1" href=""><i class="far fa-clone"></i> Duplicate</a>
 
-												<a onclick="deleteData(event, {{ $service->slug }})" class="dropdown-item text-1" href="#">
+												<a onclick="deleteData(event, '{{ $service->slug }}')" class="dropdown-item text-1" href="#">
 													<i class="fa fa-trash-alt"></i> Delete
 												</a>
 
@@ -104,7 +104,7 @@
 	let table = document.querySelector('.table');
         //window.table1 = table1;
 
-        function deleteData(event) {
+        function deleteData(event,slug) {
             var csrf_token = $('meta[name="csrf-token"]').attr('content');
             swal({
               title: "Are you sure?",
@@ -116,7 +116,7 @@
             .then((willDelete) => {
               if (willDelete) {
                 $.ajax({ 
-                url  : "{{ route('service.delete', $service->slug) }}",
+                url  : "{{ url('/services') }}" + '/' + slug,
                 type : "POST",
                 data : {'_method' : 'DELETE', '_token' : csrf_token },
                 cache: false,
