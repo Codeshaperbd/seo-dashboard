@@ -22,7 +22,7 @@
 
 		{{-- <span class="separator"></span> --}}
 
-		<ul class="notifications">
+		<ul class="notifications" style="position: relative;display: inline-block;">
 			
 			<li>
 				<a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">

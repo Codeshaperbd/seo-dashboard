@@ -45,6 +45,7 @@
    		@if(Auth::user()) :user="{{ Auth::user() }}" @endif
    		@if(!empty(Auth::user()->client)) :clientinfo="{{ Auth::user()->client }}" @endif></custom-order>
 	    <vue-progress-bar></vue-progress-bar>
+	    
     </div>
 
 

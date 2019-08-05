@@ -556,6 +556,7 @@ class ComposerStaticInit007214e74586a6c551db3b7c039e8d48
         'App\\InvoiceBilling' => __DIR__ . '/../..' . '/app/InvoiceBilling.php',
         'App\\InvoiceItem' => __DIR__ . '/../..' . '/app/InvoiceItem.php',
         'App\\Mail\\WelcomeTeam' => __DIR__ . '/../..' . '/app/Mail/WelcomeTeam.php',
+        'App\\Notifications\\WelcomeClient' => __DIR__ . '/../..' . '/app/Notifications/WelcomeClient.php',
         'App\\Notifications\\WelcomeTeam' => __DIR__ . '/../..' . '/app/Notifications/WelcomeTeam.php',
         'App\\Order' => __DIR__ . '/../..' . '/app/Order.php',
         'App\\OrderForm' => __DIR__ . '/../..' . '/app/OrderForm.php',

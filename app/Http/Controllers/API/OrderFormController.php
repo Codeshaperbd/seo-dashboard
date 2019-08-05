@@ -12,6 +12,8 @@ use App\Client;
 use DB;
 use App\Notifications\WelcomeClient;
 use Carbon\Carbon;
+use App\Order;
+use App\Invoice;
 
 
 use Stripe;
@@ -160,6 +162,12 @@ class OrderFormController extends Controller
 
     // create order for customer order form
     public function createOrder(Request $request){
+
+        $this->validate($request, [
+            'email' => 'required|string|max:191|unique:users'
+        ]);
+
+
         $array = [];
 
        // check radio button data
@@ -186,15 +194,20 @@ class OrderFormController extends Controller
 
        // check multiple dropdown data
         if($request->dropDownMultipleServices){
+            $i = 0;
             foreach ($request->dropDownMultipleServices as $multiDropdownSevrcie) {
-                //array_push($array,$multiDropdownSevrcie);
-                return $multiDropdownSevrcie;
+
+                if(is_null($request->dropMultiQty[$i])){
+                    $multiDropdownSevrcie += ['quantity' => 1]; 
+                } else {
+                    $multiDropdownSevrcie += ['quantity' => $request->dropMultiQty[$i]]; 
+                }
+
+                //push data inside array
+                array_push($array,$multiDropdownSevrcie);
+                $i++;
             }
         }
-
-        $this->validate($request, [
-            'email' => 'required|string|max:191|unique:users'
-        ]);
 
         // return $request->stripeToken;
         try {
@@ -246,9 +259,61 @@ class OrderFormController extends Controller
             }
 
             // store data in database
+            // unique order number
+            $orderNumber = strtoupper(uniqid('CODE'));
 
-            // create invoice
+            // insert row for every ervery service
+            $i = 1;
+            foreach($array as $key)
+            {
+                $order = Order::create([
+                    'user_id' => $user->id,
+                    'service_id' => $key['id'],
+                    'team_member_id' => null,
+                    'order_number' => $orderNumber.'_'.$i,
+                    'order_note' => 'Write your order note',
+                    'quantity' => $key['quantity'],
+                    'order_status' => 'submitted',
+                    'payment_staus' => 'By Card',
+                ]);
+                $i++;
+            }
 
+
+            // generate invoice for the order
+            $invoice = Invoice::create([
+
+                'order_id' => $order->id,
+                'user_id' => $user->id,
+                'invoice_number' => $orderNumber,
+                'invoice_total' => $request->total,
+                'invoice_discount' => 0.0,
+                'invoice_vat' => 0.0,
+                'invoice_status' => 'complete',
+                'payment_method' => 'checkout',
+                'payment_getway' => 'stripe'
+
+            ]);
+
+            // insert billing information 
+            $invoiceBilling = InvoiceBilling::create([
+
+                'invoice_id' => $invoice->id,
+                'first_name' => $name,
+                'email' => $request->email
+                
+            ]);
+
+
+            // insert row for each billing item
+            foreach($array as $key)
+            {
+                $invoiceItem = InvoiceItem::create([
+                    'invoice_id' => $invoice->id,
+                    'service_id' => $key['id'],
+                    'quantity' => $key['quantity']
+                ]);
+            }
             
             // Create activity log 
             activity()->performedOn($user)->causedBy(auth()->user())->log('Created client account for '. $user->name);
