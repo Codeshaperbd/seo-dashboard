@@ -45,6 +45,7 @@ return array(
     'App\\InvoiceBilling' => $baseDir . '/app/InvoiceBilling.php',
     'App\\InvoiceItem' => $baseDir . '/app/InvoiceItem.php',
     'App\\Mail\\WelcomeTeam' => $baseDir . '/app/Mail/WelcomeTeam.php',
+    'App\\Notifications\\WelcomeClient' => $baseDir . '/app/Notifications/WelcomeClient.php',
     'App\\Notifications\\WelcomeTeam' => $baseDir . '/app/Notifications/WelcomeTeam.php',
     'App\\Order' => $baseDir . '/app/Order.php',
     'App\\OrderForm' => $baseDir . '/app/OrderForm.php',

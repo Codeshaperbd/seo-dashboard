@@ -190,6 +190,11 @@
                                             <div v-else>
                                                 <input :id="data.field" type="email" v-model="form.email" class="form-control" :placeholder="data.placeholder" :class="{ 'is-invalid': form.errors.has('email') }" />
                                                 <has-error :form="form" field="email"></has-error>
+                                                <div class="help-block">
+                                                   
+                                                   Already have an account ?<a href=""> Sign in here.</a> 
+                                                    <!-- {{ route('client.show', $user->email) }} -->      
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- PASSWORD -->
@@ -768,7 +773,7 @@
     };
 </script>
 
-<style>
+<style scoped>
     .form-wrap{
         margin-top: 30px;
     }
